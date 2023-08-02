@@ -13,9 +13,6 @@
         android:theme="@style/Theme.STLAPP"
         tools:targetApi="31">
         <activity
-            android:name=".SignIn"
-            android:exported="false" />
-        <activity
             android:name=".WelcomeActivity"
             android:exported="false" />
         <activity
