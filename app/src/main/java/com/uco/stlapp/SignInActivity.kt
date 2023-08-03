@@ -3,7 +3,7 @@ package com.uco.stlapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
-class SignIn : AppCompatActivity() {
+class SignInActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_in)
