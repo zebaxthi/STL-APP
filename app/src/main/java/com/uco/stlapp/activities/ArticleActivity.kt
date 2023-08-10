@@ -23,9 +23,9 @@ class ArticleActivity : AppCompatActivity() {
     private fun initRecyclerView(){
         val manager = LinearLayoutManager(this)
         binding.recyclerArticle.layoutManager = LinearLayoutManager(this)
-        binding.recyclerArticle.adapter = ArticleAdapter(ArticleProvider.articleList) { superHero ->
+        binding.recyclerArticle.adapter = ArticleAdapter(ArticleProvider.articleList) { article ->
             onItemSelected(
-                superHero
+                article
             )
         }
     }
