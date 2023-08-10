@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoanFragment">
-
-    <?xml version="1.0" encoding="utf-8"?>
+    tools:context=".fragment.LoanFragment">
 
     <androidx.cardview.widget.CardView
         android:layout_marginHorizontal="16dp"
