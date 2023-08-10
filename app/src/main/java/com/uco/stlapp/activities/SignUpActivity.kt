@@ -1,4 +1,4 @@
-package com.uco.stlapp
+package com.uco.stlapp.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -23,7 +23,5 @@ class SignUpActivity : AppCompatActivity() {
             val intent = Intent(this, SignInActivity::class.java)
             startActivity(intent)
         }
-
-
     }
 }
