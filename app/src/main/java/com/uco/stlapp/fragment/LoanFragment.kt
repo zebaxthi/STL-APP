@@ -1,32 +1,57 @@
 package com.uco.stlapp.fragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.uco.stlapp.R
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts
+import com.uco.stlapp.databinding.ActivityMainBinding
+import com.uco.stlapp.databinding.FragmentLoanBinding
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.util.Date
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [LoanFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class LoanFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
+    private var nameArticle: String? = null
+    private var nameRef: String? = null
+    private var nameQuantity: Int? = null
+    private var nameStatus: String? = null
+    private var nameStartDate: String? = null
+    private var nameEndDate: String? = null
+    private var nameIsReturned: Boolean? = null
+    private var nameMonitor: String? = null
+    private lateinit var binding: FragmentLoanBinding
+
+    val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
+        // Callback is invoked after the user selects a media item or closes the
+        // photo picker.
+        if (uri != null) {
+            Log.d("PhotoPicker", "Selected URI: $uri")
+        } else {
+            Log.d("PhotoPicker", "No media selected")
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = FragmentLoanBinding.inflate(layoutInflater)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+            nameArticle = it.getString(NAMEARTICLE_BUNDLE)
+            nameRef = it.getString(NAMEREF_BUNDLE)
+            nameQuantity = it.getInt(NAMEQUANTITY_BUNDLE)
+            nameStatus = it.getString(NAMESTATUS_BUNDLE)
+            nameStartDate = it.getString(NAMESTARTDATE_BUNDLE)
+            nameEndDate = it.getString(NAMEENDDATE_BUNDLE)
+            nameIsReturned = it.getBoolean(NAMEISRETURNED_BUNDLE)
+            nameMonitor = it.getString(NAMEMONITOR_BUNDLE)
+        }
+
+        binding.btReturnItem.setOnClickListener{
+            pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
         }
     }
 
@@ -34,26 +59,47 @@ class LoanFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_loan, container, false)
+        binding = FragmentLoanBinding.inflate(inflater, container, false)
+        binding.tvNameArticle.text = nameArticle
+        binding.tvNameRef.text = "Ref: " + nameRef
+        binding.tvNameQuantity.text = "Quantity: " + nameQuantity.toString()
+        binding.tvNameStatus.text = "Status: " + nameStatus
+        binding.tvNameStartDate.text = "Start: " + nameStartDate
+        binding.tvNameEndDate.text = "End: " + nameEndDate
+        binding.tvNameIsReturned.text = "Is Returned: " + nameIsReturned.toString()
+        binding.tvNameMonitor.text = "Monitor: " + nameMonitor
+        binding.btReturnItem.setOnClickListener{
+            parentFragmentManager.beginTransaction().remove(this).commit()
+        }
+        return binding.root
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment LoanFragment.
-         */
-        // TODO: Rename and change types and number of parameters
+
+        const val NAMEARTICLE_BUNDLE = "nameArticle_bundle"
+        const val NAMEREF_BUNDLE = "nameRef_bundle"
+        const val NAMEQUANTITY_BUNDLE = "nameQuantity_bundle"
+        const val NAMESTATUS_BUNDLE = "nameStatus_bundle"
+        const val NAMESTARTDATE_BUNDLE = "nameStartDate_bundle"
+        const val NAMEENDDATE_BUNDLE = "nameEndDate_bundle"
+        const val NAMEISRETURNED_BUNDLE = "nameIsReturned_bundle"
+        const val NAMEMONITOR_BUNDLE = "nameMonitor_bundle"
+
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance(nameArticle: String, nameRef: String,
+            nameQuantity: Int, nameStatus: String,
+            nameStartDate: String, nameEndDate: String,
+            nameIsReturned: Boolean, nameMonitor: String) =
             LoanFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+                    putString(NAMEARTICLE_BUNDLE, nameArticle)
+                    putString(NAMEREF_BUNDLE, nameRef)
+                    putInt(NAMEQUANTITY_BUNDLE, nameQuantity)
+                    putString(NAMESTATUS_BUNDLE, nameStatus)
+                    putString(NAMESTARTDATE_BUNDLE, nameStartDate)
+                    putString(NAMEENDDATE_BUNDLE, nameEndDate)
+                    putBoolean(NAMEISRETURNED_BUNDLE, nameIsReturned)
+                    putString(NAMEMONITOR_BUNDLE, nameMonitor)
                 }
             }
     }

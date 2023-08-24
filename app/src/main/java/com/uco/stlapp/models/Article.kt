@@ -5,5 +5,5 @@ data class Article(
     val ref: String,
     val quantity: Int,
     val status: String,
-    val photo: String,
+    val photo: String?,
 )
