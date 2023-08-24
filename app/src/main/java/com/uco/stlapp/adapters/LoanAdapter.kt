@@ -9,7 +9,7 @@ import com.uco.stlapp.models.Loan
 import com.uco.stlapp.viewHolders.ArticleViewHolder
 import com.uco.stlapp.viewHolders.LoanViewHolder
 
-class LoanAdapter(private val loans:List<Loan>, private val onClickListener: (Loan) -> Unit) : RecyclerView.Adapter<LoanViewHolder>()  {
+class LoanAdapter(private var loans:List<Loan>, private val onClickListener: (Loan) -> Unit) : RecyclerView.Adapter<LoanViewHolder>()  {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LoanViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         return LoanViewHolder(layoutInflater.inflate(R.layout.item_loan, parent, false))
@@ -21,5 +21,10 @@ class LoanAdapter(private val loans:List<Loan>, private val onClickListener: (Lo
     override fun onBindViewHolder(holder: LoanViewHolder, position: Int) {
         val item = loans[position]
         holder.render(item, onClickListener)
+    }
+
+    fun updateLoans(loans: List<Loan>){
+        this.loans = loans
+        notifyDataSetChanged()
     }
 }

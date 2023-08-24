@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.LoanFragment">
+    tools:context=".fragment.LoanFragment"
+    android:focusable="true"
+    android:clickable="true">
 
     <androidx.cardview.widget.CardView
         android:layout_marginHorizontal="16dp"
@@ -64,9 +66,68 @@
                 app:layout_constraintTop_toBottomOf="@+id/tvNameQuantity"
                 tools:text="Status: " />
 
+            <TextView
+                android:id="@+id/tvNameStartDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:paddingBottom="8dp"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvNameStatus"
+                tools:text="Start Date: " />
+
+            <TextView
+                android:id="@+id/tvNameEndDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:paddingBottom="8dp"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvNameStartDate"
+                tools:text="End Date: " />
+
+            <TextView
+                android:id="@+id/tvNameIsReturned"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:paddingBottom="8dp"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvNameEndDate"
+                tools:text="Is Returned: " />
+
+            <TextView
+                android:id="@+id/tvNameMonitor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:paddingBottom="8dp"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvNameIsReturned"
+                tools:text="Monitor: " />
+
+            <Button
+                android:id="@+id/btReturnItem"
+                android:layout_width="195dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="252dp"
+                android:backgroundTint="#34843D"
+                android:text="Return Item"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvNameMonitor" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
 
-</FrameLayout>
+</androidx.drawerlayout.widget.DrawerLayout>
