@@ -9,7 +9,7 @@ class LoanProvider {
 
     companion object{
         val loanList = listOf<Loan>(
-            Loan("Spiderman", "Marvel", 4, Date(2023, 8, 1), Date(2023, 8, 1), true),
+            Loan("Loan", "Marvel", 4, Date(2023, 8, 1), Date(2023, 8, 1), true),
             Loan("Daredevil", "Marvel", 3, Date(2023, 8, 1), Date(2023, 8, 1), true),
             Loan("Wolverine", "Marvel", 2, Date(2023, 8, 1), Date(2023, 8, 1), true),
             Loan("Batman", "DC", 4, Date(2023, 8, 1), Date(2023, 8, 1), true),

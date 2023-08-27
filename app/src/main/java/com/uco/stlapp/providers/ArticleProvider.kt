@@ -5,7 +5,7 @@ import com.uco.stlapp.models.Article
 class ArticleProvider {
     companion object{
         val articleList = listOf<Article>(
-            Article("Spiderman", "Marvel", 4, "w", null),
+            Article("Article", "Marvel", 4, "w", null),
             Article("Daredevil", "Marvel", 3, "q", null),
             Article("Wolverine", "Marvel", 2, "s", null),
             Article("Batman", "DC", 4, "a", null),
