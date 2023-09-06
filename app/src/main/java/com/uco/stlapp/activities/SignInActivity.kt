@@ -15,7 +15,7 @@ class SignInActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.btSignIn.setOnClickListener{
-            val intent = Intent(this, LoanActivity::class.java)
+            val intent = Intent(this, NavigationActivity::class.java)
             startActivity(intent)
         }
         binding.tvSignUp.setOnClickListener{

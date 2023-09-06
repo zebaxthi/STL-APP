@@ -2,17 +2,26 @@ package com.uco.stlapp.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.add
 import androidx.fragment.app.commit
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.navigateUp
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.navigation.NavigationView
 import com.uco.stlapp.R
 import com.uco.stlapp.adapters.ArticleAdapter
 import com.uco.stlapp.adapters.LoanAdapter
 import com.uco.stlapp.databinding.ActivityArticleBinding
 import com.uco.stlapp.databinding.ActivityLoanBinding
+import com.uco.stlapp.databinding.ActivityNavigationBinding
 import com.uco.stlapp.fragment.LoanFragment
 import com.uco.stlapp.fragment.LoanFragment.Companion.NAMEARTICLE_BUNDLE
 import com.uco.stlapp.fragment.LoanFragment.Companion.NAMEENDDATE_BUNDLE
@@ -42,6 +51,7 @@ class LoanActivity : AppCompatActivity() {
             var Filtered = LoanMutableList.filter { x -> x.articleName.lowercase().contains(loanFilter.toString().lowercase()) }
             adapter.updateLoans(Filtered)
         }
+
         initRecyclerView()
     }
 

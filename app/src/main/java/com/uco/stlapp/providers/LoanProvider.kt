@@ -16,7 +16,6 @@ class LoanProvider {
             Loan("Andrea", "Arduino", 2, Date(2023, 8, 1), Date(2023, 8, 1), true),
             Loan("Juan", "Motor con Reductor", 5, Date(2023, 8, 1), Date(2023, 8, 1), true),
             Loan("Laura", "Multimetro", 1, Date(2023, 8, 1), Date(2023, 8, 1), true),
-
         )
     }
 }
