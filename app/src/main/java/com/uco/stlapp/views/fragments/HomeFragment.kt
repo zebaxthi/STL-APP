@@ -1,4 +1,4 @@
-package com.uco.stlapp.fragment
+package com.uco.stlapp.views.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater

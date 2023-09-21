@@ -1,12 +1,11 @@
-package com.uco.stlapp.adapters
+package com.uco.stlapp.views.adapters
 
-import android.content.DialogInterface.OnClickListener
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.uco.stlapp.R
 import com.uco.stlapp.models.Article
-import com.uco.stlapp.viewHolders.ArticleViewHolder
+import com.uco.stlapp.views.viewHolders.ArticleViewHolder
 
 class ArticleAdapter(private var articles:List<Article>, private val onClickListener: (Article) -> Unit) : RecyclerView.Adapter<ArticleViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleViewHolder {

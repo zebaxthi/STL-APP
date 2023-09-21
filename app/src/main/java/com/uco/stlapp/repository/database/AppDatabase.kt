@@ -4,11 +4,16 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+import com.uco.stlapp.repository.dao.ArticleDAO
+import com.uco.stlapp.repository.dao.LoanDAO
+import com.uco.stlapp.repository.dao.UserDao
 import com.uco.stlapp.repository.entities.Article
 import com.uco.stlapp.repository.entities.Loan
 import com.uco.stlapp.repository.entities.User
 
 @Database(entities = [Loan::class, Article::class, User::class], version = 1, exportSchema = false)
+@TypeConverters(Converters::class)
 abstract class AppDatabase: RoomDatabase() {
     companion object {
         private const val DATABASE_NAME = "sltmovil.db"
@@ -31,4 +36,9 @@ abstract class AppDatabase: RoomDatabase() {
             }
         }
     }
+
+    abstract fun articleDAO(): ArticleDAO
+    abstract fun loanDAO(): LoanDAO
+    abstract fun userDAO(): UserDao
+
 }

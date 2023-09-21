@@ -1,9 +1,8 @@
-package com.uco.stlapp.activities
+package com.uco.stlapp.views.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import com.uco.stlapp.databinding.ActivitySignInBinding
 
 class SignInActivity : AppCompatActivity() {

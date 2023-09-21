@@ -1,13 +1,11 @@
-package com.uco.stlapp.adapters
+package com.uco.stlapp.views.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.uco.stlapp.R
-import com.uco.stlapp.models.Article
 import com.uco.stlapp.models.Loan
-import com.uco.stlapp.viewHolders.ArticleViewHolder
-import com.uco.stlapp.viewHolders.LoanViewHolder
+import com.uco.stlapp.views.viewHolders.LoanViewHolder
 
 class LoanAdapter(private var loans:List<Loan>, private val onClickListener: (Loan) -> Unit) : RecyclerView.Adapter<LoanViewHolder>()  {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LoanViewHolder {

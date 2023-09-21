@@ -1,4 +1,4 @@
-package com.uco.stlapp.fragment
+package com.uco.stlapp.views.fragments
 
 import android.os.Bundle
 import android.util.Log
@@ -8,11 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
-import com.uco.stlapp.databinding.ActivityMainBinding
 import com.uco.stlapp.databinding.FragmentLoanBinding
-import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.util.Date
 
 class LoanFragment : Fragment() {
 
