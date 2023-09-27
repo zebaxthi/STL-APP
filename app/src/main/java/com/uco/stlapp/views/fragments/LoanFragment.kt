@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.navigation.fragment.findNavController
+import com.uco.stlapp.R
 import com.uco.stlapp.databinding.FragmentLoanBinding
 
 class LoanFragment : Fragment() {
@@ -65,7 +67,7 @@ class LoanFragment : Fragment() {
         binding.tvNameIsReturned.text = "Is Returned: " + nameIsReturned.toString()
         binding.tvNameMonitor.text = "Monitor: " + nameMonitor
         binding.btReturnItem.setOnClickListener{
-            parentFragmentManager.beginTransaction().remove(this).commit()
+            findNavController().navigate(R.id.action_loanFragment_to_nav_loanList)
         }
         return binding.root
     }

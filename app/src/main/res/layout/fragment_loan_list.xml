@@ -5,30 +5,16 @@
     android:id="@+id/drawer_loans_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.activities.LoanActivity"
+    tools:context=".views.fragments.LoanListFragment"
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
-    <include
-        android:id="@+id/app_bar_navigation"
-        layout="@layout/app_bar_navigation"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
 
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/nav_view"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header_navigation"
-        app:menu="@menu/activity_main_drawer" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingTop="70dp">
+        android:orientation="vertical">
 
         <EditText
             android:id="@+id/etFilterLoan"
@@ -51,11 +37,5 @@
             android:layout_marginTop="40dp" />
 
     </LinearLayout>
-
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentLoan"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
 
 </androidx.drawerlayout.widget.DrawerLayout>

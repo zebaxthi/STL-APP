@@ -10,3 +10,6 @@ data class Loan (
     val dateEnd: Date,
     val isReturned: Boolean,
 )
+fun com.uco.stlapp.repository.entities.Loan.toModel(): Loan {
+    return Loan (this.monitorName, this.articleName, this.quantityArticle, this.dateStart, this.dateEnd, this.isReturned)
+}
