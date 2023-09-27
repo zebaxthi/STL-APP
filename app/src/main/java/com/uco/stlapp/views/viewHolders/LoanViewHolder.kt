@@ -1,10 +1,8 @@
-package com.uco.stlapp.viewHolders
+package com.uco.stlapp.views.viewHolders
 
-import android.renderscript.ScriptGroup.Binding
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.uco.stlapp.databinding.ItemLoanBinding
-import com.uco.stlapp.models.Article
 import com.uco.stlapp.models.Loan
 import java.text.SimpleDateFormat
 

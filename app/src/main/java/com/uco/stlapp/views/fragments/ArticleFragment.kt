@@ -1,10 +1,12 @@
-package com.uco.stlapp.fragment
+package com.uco.stlapp.views.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
+import com.uco.stlapp.R
 import com.uco.stlapp.databinding.FragmentArticleBinding
 
 
@@ -40,7 +42,7 @@ class ArticleFragment : Fragment() {
         binding.tvNameQuantity.text = "Quantity: " + nameQuantity.toString()
         binding.tvNameStatus.text = "Status: " + nameStatus
         binding.btReturnItem.setOnClickListener{
-            parentFragmentManager.beginTransaction().remove(this).commit()
+            findNavController().navigate(R.id.action_articleFragment_to_nav_articleList)
         }
         return binding.root
     }

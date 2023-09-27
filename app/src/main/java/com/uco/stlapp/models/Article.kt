@@ -7,3 +7,7 @@ data class Article(
     val status: String,
     val photo: String?,
 )
+
+fun com.uco.stlapp.repository.entities.Article.toModel(): Article {
+    return Article(this.name, this.ref, this.quantity, this.status, this.photo)
+}

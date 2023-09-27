@@ -1,7 +1,6 @@
-package com.uco.stlapp.viewHolders
+package com.uco.stlapp.views.viewHolders
 
 import android.view.View
-import android.view.View.OnClickListener
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.uco.stlapp.databinding.ItemArticleBinding

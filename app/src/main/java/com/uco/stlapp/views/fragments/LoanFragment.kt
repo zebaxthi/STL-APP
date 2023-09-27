@@ -1,4 +1,4 @@
-package com.uco.stlapp.fragment
+package com.uco.stlapp.views.fragments
 
 import android.os.Bundle
 import android.util.Log
@@ -8,11 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
-import com.uco.stlapp.databinding.ActivityMainBinding
+import androidx.navigation.fragment.findNavController
+import com.uco.stlapp.R
 import com.uco.stlapp.databinding.FragmentLoanBinding
-import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.util.Date
 
 class LoanFragment : Fragment() {
 
@@ -69,7 +67,7 @@ class LoanFragment : Fragment() {
         binding.tvNameIsReturned.text = "Is Returned: " + nameIsReturned.toString()
         binding.tvNameMonitor.text = "Monitor: " + nameMonitor
         binding.btReturnItem.setOnClickListener{
-            parentFragmentManager.beginTransaction().remove(this).commit()
+            findNavController().navigate(R.id.action_loanFragment_to_nav_loanList)
         }
         return binding.root
     }

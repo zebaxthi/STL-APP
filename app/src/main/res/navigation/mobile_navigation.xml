@@ -7,19 +7,47 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.uco.stlapp.fragment.HomeFragment"
+        android:name="com.uco.stlapp.views.fragments.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
 
-    <activity
-        android:id="@+id/nav_articles"
-        android:name="com.uco.stlapp.activities.ArticleActivity"
+    <fragment
+        android:id="@+id/nav_articleList"
+        android:name="com.uco.stlapp.views.fragments.ArticleListFragment"
         android:label="@string/menu_articles"
-        tools:layout="@layout/activity_article" />
+        tools:layout="@layout/fragment_article_list" >
+        <action
+            android:id="@+id/action_nav_articleList_to_articleFragment"
+            app:destination="@id/articleFragment" />
+    </fragment>
 
-    <activity
-        android:id="@+id/nav_loans"
-        android:name="com.uco.stlapp.activities.LoanActivity"
-        android:label="@string/menu_Loans"
-        tools:layout="@layout/activity_loan" />
+    <fragment
+        android:id="@+id/articleFragment"
+        android:name="com.uco.stlapp.views.fragments.ArticleFragment"
+        android:label="fragment_article"
+        tools:layout="@layout/fragment_article" >
+        <action
+            android:id="@+id/action_articleFragment_to_nav_articleList"
+            app:destination="@id/nav_articleList" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_loanList"
+        android:name="com.uco.stlapp.views.fragments.LoanListFragment"
+        android:label="fragment_loan_list"
+        tools:layout="@layout/fragment_loan_list" >
+
+        <action
+            android:id="@+id/action_nav_loanList_to_loanFragment"
+            app:destination="@id/loanFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loanFragment"
+        android:name="com.uco.stlapp.views.fragments.LoanFragment"
+        android:label="fragment_loan"
+        tools:layout="@layout/fragment_loan" >
+
+        <action
+            android:id="@+id/action_loanFragment_to_nav_loanList"
+            app:destination="@id/nav_loanList" />
+    </fragment>
 </navigation>
