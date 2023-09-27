@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.uco.stlapp.R
@@ -18,7 +17,6 @@ import com.uco.stlapp.views.fragments.ArticleFragment.Companion.NAMEQUANTITY_BUN
 import com.uco.stlapp.views.fragments.ArticleFragment.Companion.NAMESTATUS_BUNDLE
 import com.uco.stlapp.views.fragments.ArticleFragment.Companion.NAMEREF_BUNDLE
 import com.uco.stlapp.models.Article
-import com.uco.stlapp.providers.ArticleProvider
 import com.uco.stlapp.repository.database.AppDatabase
 import com.uco.stlapp.viewModels.ArticleListViewModel
 
