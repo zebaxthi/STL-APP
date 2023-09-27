@@ -5,6 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import androidx.sqlite.db.SupportSQLiteDatabase
 import com.uco.stlapp.repository.dao.ArticleDAO
 import com.uco.stlapp.repository.dao.LoanDAO
 import com.uco.stlapp.repository.dao.UserDao

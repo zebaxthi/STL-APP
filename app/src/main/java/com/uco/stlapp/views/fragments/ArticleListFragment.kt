@@ -26,7 +26,7 @@ import com.uco.stlapp.viewModels.ArticleListViewModel
 class ArticleListFragment : Fragment() {
 
     private lateinit var binding: FragmentArticleListBinding
-    private var ArticleMutableList: MutableList<Article> = ArticleProvider.articleList.toMutableList()
+    private var ArticleMutableList: MutableList<Article> = mutableListOf()
     private lateinit var adapter: ArticleAdapter
     private val manager by lazy { LinearLayoutManager(requireContext()) }
     private lateinit var db: AppDatabase
@@ -55,9 +55,9 @@ class ArticleListFragment : Fragment() {
             }
             adapter.updateArticles(filtered)
         }
+        viewModel = ArticleListViewModel(requireContext())
+        ArticleMutableList = viewModel.getArticles().toMutableList()
         initRecyclerView()
-        viewModel = ViewModelProvider(this).get(ArticleListViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
     private fun initRecyclerView() {
