@@ -54,6 +54,7 @@ class ArticleListFragment : Fragment() {
             adapter.updateArticles(filtered)
         }
         viewModel = ArticleListViewModel(requireContext())
+        viewModel.fetchArticlesData()
         ArticleMutableList = viewModel.getArticles().toMutableList()
         initRecyclerView()
     }
