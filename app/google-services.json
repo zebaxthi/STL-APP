@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "270029272680",
+    "project_id": "stl-app-e3784",
+    "storage_bucket": "stl-app-e3784.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:270029272680:android:16ab5c534ef3af50796ddd",
+        "android_client_info": {
+          "package_name": "com.uco.stlapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZJbTeTUYWTozNQZ2jHkXBd_I1neu9J4g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
