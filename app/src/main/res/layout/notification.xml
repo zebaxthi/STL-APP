@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@id/app_logo"
-            android:Layout_marginTop="15dp"
+            android:layout_marginTop="15dp"
             android:text="Title"
             android:textSize="20sp"
             android:textStyle="bold"></TextView>

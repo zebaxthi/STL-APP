@@ -17,18 +17,25 @@ import com.google.firebase.messaging.RemoteMessage
 import com.uco.stlapp.R
 import com.uco.stlapp.views.activities.MainActivity
 
-const val channelId = "notification_chaneel"
+const val channelId = "notification_channel"
 const val channelName = "com.uco.stlapp.utils.messaging"
 @Suppress("UNUSED_EXPRESSION")
 class MessagingService : FirebaseMessagingService() {
 
+
+    override fun onMessageReceived(remoteMessage: RemoteMessage) {
+        if(remoteMessage.getNotification() != null){
+            generateNotification(remoteMessage.notification!!.title!!, remoteMessage.notification!!.body!!)
+        }
+    }
+
     @SuppressLint("RemoteLayout")
     fun getRemoteView(tittle: String, message: String): RemoteViews{
 
-        val remoteView = RemoteViews("com.uco.stlapp.utils.messaging",R.layout.notification)
+        val remoteView = RemoteViews("com.uco.stlapp",R.layout.notification)
 
         remoteView.setTextViewText(R.id.title,tittle)
-        remoteView.setTextViewText(R.id.message,message)
+        remoteView.setTextViewText(R.id.description,message)
         remoteView.setImageViewResource(R.id.app_logo,R.drawable.loan_logo)
 
         return remoteView
@@ -52,7 +59,7 @@ class MessagingService : FirebaseMessagingService() {
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-            val notificationChannel= (channelId, channelName, NotificationManager.IMPORTANCE_HIGH)
+            val notificationChannel = NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_HIGH)
             notificationManager.createNotificationChannel(notificationChannel)
         }
 
