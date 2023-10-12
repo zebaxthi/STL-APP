@@ -12,4 +12,9 @@ data class Article(
     @ColumnInfo var quantity: Int,
     @ColumnInfo var status: String,
     @ColumnInfo var photo: String?,
-)
+) {
+}
+
+fun com.uco.stlapp.models.ArticleResponse.toEntity(): Article {
+    return Article(this.id, this.name, this.ref, this.quantity, this.status, this.photo)
+}
