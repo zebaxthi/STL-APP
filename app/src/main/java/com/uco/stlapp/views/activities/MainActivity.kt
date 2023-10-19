@@ -3,7 +3,6 @@ package com.uco.stlapp.views.activities
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
 import com.uco.stlapp.databinding.ActivityMainBinding
 import com.uco.stlapp.viewModels.ArticleListViewModel
 
@@ -28,5 +27,7 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
         }
+
+
     }
 }
