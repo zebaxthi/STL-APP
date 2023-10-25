@@ -16,6 +16,12 @@
             android:id="@+id/nav_loanList"
             android:icon="@drawable/baseline_shopping_cart_24"
             android:title="@string/menu_Loans" />
+        <item
+            android:id="@+id/articleFragment"
+            android:visible="false" />
+        <item
+            android:id="@+id/loanFragment"
+            android:visible="false" />
     </group>
     <group android:checkableBehavior="single">
         <item
