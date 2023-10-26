@@ -19,6 +19,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.uco.stlapp.R
 import com.uco.stlapp.views.adapters.ArticleAdapter
 import com.uco.stlapp.databinding.FragmentArticleListBinding
@@ -40,6 +41,9 @@ class ArticleListFragment : Fragment() {
     private lateinit var adapter: ArticleAdapter
     private val manager by lazy { LinearLayoutManager(requireContext()) }
     private lateinit var db: AppDatabase
+
+    private lateinit var swipeRefreshLayout : SwipeRefreshLayout
+
     private val channelID ="notification_channel"
     private val channelName ="com.uco.stlapp.utils.messaging"
     private val notificID = 0
@@ -84,6 +88,12 @@ class ArticleListFragment : Fragment() {
             adapter.updateArticles(filtered)
         }
         initRecyclerView()
+        swipeRefreshLayout = binding.swipeRefreshArticles
+        swipeRefreshLayout.setOnRefreshListener {
+            ArticleMutableList = viewModel.getArticles().toMutableList()
+            initRecyclerView()
+            swipeRefreshLayout.isRefreshing = false
+        }
     }
 
     private fun initRecyclerView() {
