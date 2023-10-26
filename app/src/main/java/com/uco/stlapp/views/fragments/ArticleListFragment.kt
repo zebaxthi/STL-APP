@@ -30,6 +30,7 @@ import com.uco.stlapp.models.Article
 import com.uco.stlapp.repository.database.AppDatabase
 import com.uco.stlapp.utils.messaging.MessagingService
 import com.uco.stlapp.viewModels.ArticleListViewModel
+import com.uco.stlapp.views.fragments.ArticleFragment.Companion.NAMEID_BUNDLE
 
 
 class ArticleListFragment : Fragment() {
@@ -98,7 +99,8 @@ class ArticleListFragment : Fragment() {
             NAMEARTICLE_BUNDLE to article.name,
             NAMEREF_BUNDLE to article.ref,
             NAMEQUANTITY_BUNDLE to article.quantity,
-            NAMESTATUS_BUNDLE to article.status
+            NAMESTATUS_BUNDLE to article.status,
+            NAMEID_BUNDLE to article.id
         )
 
         val notificacion= context?.let { it ->
