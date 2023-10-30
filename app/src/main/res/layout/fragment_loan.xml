@@ -33,25 +33,14 @@
                 tools:text="Name" />
 
             <TextView
-                android:id="@+id/tvNameRef"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="8dp"
-                android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvNameArticle"
-                tools:text="Ref: " />
-
-            <TextView
                 android:id="@+id/tvNameQuantity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="24dp"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvNameRef"
+                app:layout_constraintTop_toBottomOf="@+id/tvNameArticle"
                 tools:text="Quantity: " />
 
             <TextView

@@ -16,5 +16,4 @@ data class User(
     @ColumnInfo var address: String,
     @ColumnInfo var rol: String,
     @ColumnInfo var RFID: String,
-
 )

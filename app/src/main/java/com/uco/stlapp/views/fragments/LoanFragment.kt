@@ -11,11 +11,12 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.navigation.fragment.findNavController
 import com.uco.stlapp.R
 import com.uco.stlapp.databinding.FragmentLoanBinding
+import java.text.SimpleDateFormat
+import java.util.Date
 
 class LoanFragment : Fragment() {
 
     private var nameArticle: String? = null
-    private var nameRef: String? = null
     private var nameQuantity: Int? = null
     private var nameStatus: String? = null
     private var nameStartDate: String? = null
@@ -39,7 +40,6 @@ class LoanFragment : Fragment() {
         binding = FragmentLoanBinding.inflate(layoutInflater)
         arguments?.let {
             nameArticle = it.getString(NAMEARTICLE_BUNDLE)
-            nameRef = it.getString(NAMEREF_BUNDLE)
             nameQuantity = it.getInt(NAMEQUANTITY_BUNDLE)
             nameStatus = it.getString(NAMESTATUS_BUNDLE)
             nameStartDate = it.getString(NAMESTARTDATE_BUNDLE)
@@ -59,7 +59,6 @@ class LoanFragment : Fragment() {
     ): View? {
         binding = FragmentLoanBinding.inflate(inflater, container, false)
         binding.tvNameArticle.text = nameArticle
-        binding.tvNameRef.text = "Ref: " + nameRef
         binding.tvNameQuantity.text = "Quantity: " + nameQuantity.toString()
         binding.tvNameStatus.text = "Status: " + nameStatus
         binding.tvNameStartDate.text = "Start: " + nameStartDate
@@ -75,7 +74,6 @@ class LoanFragment : Fragment() {
     companion object {
 
         const val NAMEARTICLE_BUNDLE = "nameArticle_bundle"
-        const val NAMEREF_BUNDLE = "nameRef_bundle"
         const val NAMEQUANTITY_BUNDLE = "nameQuantity_bundle"
         const val NAMESTATUS_BUNDLE = "nameStatus_bundle"
         const val NAMESTARTDATE_BUNDLE = "nameStartDate_bundle"
@@ -91,7 +89,6 @@ class LoanFragment : Fragment() {
             LoanFragment().apply {
                 arguments = Bundle().apply {
                     putString(NAMEARTICLE_BUNDLE, nameArticle)
-                    putString(NAMEREF_BUNDLE, nameRef)
                     putInt(NAMEQUANTITY_BUNDLE, nameQuantity)
                     putString(NAMESTATUS_BUNDLE, nameStatus)
                     putString(NAMESTARTDATE_BUNDLE, nameStartDate)

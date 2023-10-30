@@ -10,10 +10,10 @@ import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.uco.stlapp.views.fragments.LoanFragment.Companion.NAMEENDDATE_BUNDLE
 import com.uco.stlapp.views.fragments.LoanFragment.Companion.NAMEMONITOR_BUNDLE
 import com.uco.stlapp.views.fragments.LoanFragment.Companion.NAMEISRETURNED_BUNDLE
-import com.uco.stlapp.views.fragments.LoanFragment.Companion.NAMEREF_BUNDLE
 import com.uco.stlapp.views.fragments.LoanFragment.Companion.NAMEARTICLE_BUNDLE
 import com.uco.stlapp.views.fragments.LoanFragment.Companion.NAMEQUANTITY_BUNDLE
 import com.uco.stlapp.views.fragments.LoanFragment.Companion.NAMESTARTDATE_BUNDLE
@@ -21,7 +21,6 @@ import com.uco.stlapp.views.fragments.LoanFragment.Companion.NAMESTATUS_BUNDLE
 import com.uco.stlapp.R
 import com.uco.stlapp.databinding.FragmentLoanListBinding
 import com.uco.stlapp.models.Loan
-import com.uco.stlapp.repository.database.AppDatabase
 import com.uco.stlapp.viewModels.LoanListViewModel
 import com.uco.stlapp.views.adapters.LoanAdapter
 
@@ -31,7 +30,8 @@ class LoanListFragment : Fragment() {
     private var LoanMutableList: MutableList<Loan> = mutableListOf()
     private lateinit var adapter: LoanAdapter
     private val manager by lazy { LinearLayoutManager(requireContext()) }
-    private lateinit var db: AppDatabase
+    private lateinit var swipeRefreshLayout : SwipeRefreshLayout
+
 
     companion object {
         fun newInstance() = LoanListFragment()
@@ -44,7 +44,6 @@ class LoanListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentLoanListBinding.inflate(inflater, container, false)
-        db = AppDatabase.getInstance(context)
         return binding.root
     }
 
@@ -55,6 +54,12 @@ class LoanListFragment : Fragment() {
                 x.articleName.lowercase().contains(loanFilter.toString().lowercase())
             }
             adapter.updateLoans(filtered)
+        }
+        swipeRefreshLayout = binding.swipeRefreshLoans
+        swipeRefreshLayout.setOnRefreshListener {
+            LoanMutableList = viewModel.getLoans().toMutableList()
+            initRecyclerView()
+            swipeRefreshLayout.isRefreshing = false
         }
         viewModel = LoanListViewModel(requireContext())
         LoanMutableList = viewModel.getLoans().toMutableList()
@@ -72,11 +77,10 @@ class LoanListFragment : Fragment() {
     private fun onItemSelected(loan: Loan) {
         val bundle = bundleOf(
             NAMEARTICLE_BUNDLE to loan.articleName,
-            NAMEREF_BUNDLE to "",
             NAMEQUANTITY_BUNDLE to loan.quantityArticle,
             NAMESTATUS_BUNDLE to "",
-            NAMESTARTDATE_BUNDLE to loan.dateStart,
-            NAMEENDDATE_BUNDLE to loan.dateEnd,
+            NAMESTARTDATE_BUNDLE to loan.dateStart.toString(),
+            NAMEENDDATE_BUNDLE to loan.dateEnd.toString(),
             NAMEISRETURNED_BUNDLE to loan.isReturned,
             NAMEMONITOR_BUNDLE to loan.monitorName,
 

@@ -61,7 +61,7 @@ class SignUpActivity : AppCompatActivity() {
                                 val user: FirebaseUser?=auth.currentUser
                                 verifyEmail(user)
                                 val userDB = dbReference.child(user?.uid.toString())
-                                userDB.child("Name").setValue(name)
+                                userDB.child("name").setValue(name)
                                 userDB.child("lastname").setValue(lastname)
                                 userDB.child("numberPhone").setValue(numberPhone)
                                 action()
