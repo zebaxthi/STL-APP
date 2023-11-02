@@ -85,6 +85,7 @@ class ArticleFragment : Fragment() {
         binding.tvNameQuantity.text = "Quantity: " + nameQuantity.toString()
         binding.tvNameStatus.text = "Status: " + nameStatus
         binding.btReturnItem.setOnClickListener{
+
             findNavController().navigate(R.id.action_articleFragment_to_nav_articleList)
         }
         binding.btLendItem.setOnClickListener{
@@ -114,7 +115,8 @@ class ArticleFragment : Fragment() {
 
     private fun generateLoan(){
         val id: Int = nameId ?: 0
-        val request : PatchArticleQuantity = (nameQuantity ?: 0).let { PatchArticleQuantity(it - 1) }
+        val request : PatchArticleQuantity = (nameQuantity ?: 0).let { PatchArticleQuantity(it - 1)
+        }
         CoroutineScope(Dispatchers.IO).launch {
             articleService.patchArticle(id, request)
             viewModel = ArticleListViewModel(requireContext())

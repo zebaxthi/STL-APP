@@ -11,4 +11,6 @@ class ArticleService {
     suspend fun getArticles() = apiService?.getArticles()
 
     suspend fun patchArticle(id: Int, request: PatchArticleQuantity) = apiService?.patchArticle(id, request)
+
+    suspend fun getArticleById(id:Int)=apiService?.getArticleById(id)
 }

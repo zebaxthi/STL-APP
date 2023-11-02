@@ -14,4 +14,7 @@ interface WebService {
 
     @PATCH("/crfhKA/articles/{id}")
     suspend fun patchArticle(@Path("id") id: Int, @Body request: PatchArticleQuantity): Response<ArticleResponse>
+
+    @GET("/crfhKA/articles/{id}")
+    suspend fun getArticleById(@Path("id")id: Int): Response<ArticleResponse>
 }
