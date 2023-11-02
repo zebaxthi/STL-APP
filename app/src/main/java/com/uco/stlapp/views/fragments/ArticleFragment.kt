@@ -126,7 +126,7 @@ class ArticleFragment : Fragment() {
         if(DateEndLoan == null){
             Toast.makeText(this.context, "Seleccione una fecha de devolucion", Toast.LENGTH_SHORT).show()
         }else{
-            var loan = Loan(null, null, nameId!!, nameArticle.toString(), user?.uid.toString(), 1, Date(), DateEndLoan, false)
+            var loan = Loan(null,null, null, nameId!!, nameArticle.toString(), user?.uid.toString(), 1, Date(), DateEndLoan, false)
             db.collection("loans")
                 .add(loan)
                 .addOnSuccessListener { documentReference ->

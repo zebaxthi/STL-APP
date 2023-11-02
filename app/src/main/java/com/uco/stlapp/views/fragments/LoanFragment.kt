@@ -143,43 +143,25 @@ class LoanFragment : Fragment() {
     }
     private fun returnLoan()
     {
-
-
         CoroutineScope(Dispatchers.IO).launch {
-
-
-           val returnObjetArticle = articleService.getArticleById(nameIdArticle!!)?.body()
-            val request : PatchArticleQuantity? =
-                returnObjetArticle?.quantity?.plus(nameQuantity!!)?.let { PatchArticleQuantity(it) }
-
+            val returnObjetArticle = articleService.getArticleById(nameIdArticle!!)?.body()
+            val request : PatchArticleQuantity? = returnObjetArticle?.quantity?.plus(nameQuantity!!)?.let { PatchArticleQuantity(it) }
             returnObjetArticle?.id?.let { articleService.patchArticle(it,request!! ) }
 
+            val docRef = db.collection("loans").document(nameIdLoan!!)
 
+            docRef.update("returned", true)
+                .addOnSuccessListener {
+                    Log.d(TAG, "Documento actualizado exitosamente")
+                    viewModelLoan.fetchLoansData()
+                    viewModelArticle.fetchArticlesData()
+                    findNavController().navigate(R.id.action_loanFragment_to_nav_loanList)
+                }
+                .addOnFailureListener { e ->
+                    Log.w(TAG, "Error al actualizar el documento", e)
+                    Toast.makeText(requireContext(), "Hubo un error en la solicitud de retorno del articulo", Toast.LENGTH_SHORT).show()
+                }
         }
-        val docRef = db.collection("loans").document(nameIdLoan!!)
-
-        val newData = mapOf(
-            "returned" to true
-
-
-        )
-
-             docRef.update(newData)
-            .addOnSuccessListener {
-                Log.d(TAG, "Documento actualizado exitosamente")
-
-                viewModelLoan.fetchLoansData()
-                viewModelArticle.fetchArticlesData()
-                findNavController().navigate(R.id.action_loanFragment_to_nav_loanList)
-
-
-            }
-            .addOnFailureListener { e ->
-                Log.w(TAG, "Error al actualizar el documento", e)
-                Toast.makeText(this.context, "Hubo un error en la solicitud de retorno del articulo", Toast.LENGTH_SHORT).show()
-
-            }
-
 
     }
 }

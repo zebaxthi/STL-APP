@@ -44,7 +44,7 @@ class LoanListViewModel(context: Context)  : ViewModel() {
                     val dateStart: Date? = timestampDateStart?.toDate()
                     val timestampDateEnd = data["dateEnd"] as? com.google.firebase.Timestamp
                     val dateEnd = timestampDateEnd?.toDate()
-                    val isReturned = data["isReturned"] as? Boolean ?: false
+                    val isReturned = data["returned"] as? Boolean ?: false
 
                     val loan = com.uco.stlapp.repository.entities.Loan(id, idMonitor, monitorName, idArticle, userId, articleName, quantityArticle, dateStart!!, dateEnd!!, isReturned)
                     loan

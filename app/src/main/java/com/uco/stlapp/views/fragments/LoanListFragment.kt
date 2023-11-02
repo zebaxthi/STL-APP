@@ -24,6 +24,7 @@ import com.uco.stlapp.models.Loan
 import com.uco.stlapp.viewModels.LoanListViewModel
 import com.uco.stlapp.views.adapters.LoanAdapter
 import com.uco.stlapp.views.fragments.LoanFragment.Companion.NAMEIDARTICLE_BUNDLE
+import com.uco.stlapp.views.fragments.LoanFragment.Companion.NAMEIDLOAN_BUNDLE
 
 class LoanListFragment : Fragment() {
 
@@ -84,8 +85,8 @@ class LoanListFragment : Fragment() {
             NAMEENDDATE_BUNDLE to loan.dateEnd.toString(),
             NAMEISRETURNED_BUNDLE to loan.isReturned,
             NAMEMONITOR_BUNDLE to loan.monitorName,
-            NAMEIDARTICLE_BUNDLE to loan.idArticle
-
+            NAMEIDARTICLE_BUNDLE to loan.idArticle,
+            NAMEIDLOAN_BUNDLE to loan.id
             )
         findNavController().navigate(R.id.action_nav_loanList_to_loanFragment, bundle)
     }
