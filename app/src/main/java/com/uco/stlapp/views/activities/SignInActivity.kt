@@ -6,17 +6,21 @@ import android.os.Bundle
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.uco.stlapp.databinding.ActivitySignInBinding
+import com.uco.stlapp.viewModels.ArticleListViewModel
+import com.uco.stlapp.viewModels.LoanListViewModel
 
 class SignInActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySignInBinding
     private lateinit var auth: FirebaseAuth
+    private lateinit var viewModelLoan: LoanListViewModel
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySignInBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        viewModelLoan = LoanListViewModel(this)
 
         binding.btSignIn.setOnClickListener{
             signIn()
@@ -38,6 +42,7 @@ class SignInActivity : AppCompatActivity() {
                 .addOnCompleteListener(this){
                     task ->
                     if(task.isSuccessful){
+                        viewModelLoan.fetchLoansData()
                         actionSuccess()
                     }else{
                         Toast.makeText(this, "Error en la autenticación", Toast.LENGTH_SHORT).show()

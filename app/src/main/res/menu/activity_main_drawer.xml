@@ -18,10 +18,12 @@
             android:title="@string/menu_Loans" />
         <item
             android:id="@+id/articleFragment"
-            android:visible="false" />
+            android:visible="false"
+            android:title="@string/menu_Article"/>
         <item
             android:id="@+id/loanFragment"
-            android:visible="false" />
+            android:visible="false"
+            android:title="@string/menu_Loan"/>
     </group>
     <group android:checkableBehavior="single">
         <item

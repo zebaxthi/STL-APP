@@ -24,7 +24,7 @@
     <fragment
         android:id="@+id/articleFragment"
         android:name="com.uco.stlapp.views.fragments.ArticleFragment"
-        android:label="fragment_article"
+        android:label="@string/menu_Article"
         tools:layout="@layout/fragment_article" >
         <action
             android:id="@+id/action_articleFragment_to_nav_articleList"
@@ -33,7 +33,7 @@
     <fragment
         android:id="@+id/nav_loanList"
         android:name="com.uco.stlapp.views.fragments.LoanListFragment"
-        android:label="fragment_loan_list"
+        android:label="@string/menu_Loans"
         tools:layout="@layout/fragment_loan_list" >
 
         <action
@@ -43,7 +43,7 @@
     <fragment
         android:id="@+id/loanFragment"
         android:name="com.uco.stlapp.views.fragments.LoanFragment"
-        android:label="fragment_loan"
+        android:label="@string/menu_Loan"
         tools:layout="@layout/fragment_loan" >
 
         <action

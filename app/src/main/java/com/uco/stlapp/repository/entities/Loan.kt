@@ -7,8 +7,11 @@ import java.util.Date
 
 @Entity
 data class Loan(
-    @PrimaryKey val id: Int,
-    @ColumnInfo var monitorName: String,
+    @PrimaryKey val id: String,
+    @ColumnInfo var idMonitor: Int?,
+    @ColumnInfo var monitorName: String?,
+    @ColumnInfo var idArticle: Int,
+    @ColumnInfo var idUser: String,
     @ColumnInfo var articleName: String,
     @ColumnInfo var quantityArticle: Int,
     @ColumnInfo var dateStart: Date,
