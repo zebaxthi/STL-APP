@@ -1,7 +1,13 @@
 package com.uco.stlapp.views.fragments
 
-import android.content.ContentValues
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.Manifest
 import android.content.ContentValues.TAG
+import android.content.Context
+import android.content.pm.PackageManager
+import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -11,14 +17,14 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.app.ActivityCompat
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.uco.stlapp.R
 import com.uco.stlapp.databinding.FragmentLoanBinding
-import com.uco.stlapp.models.Article
-import com.uco.stlapp.models.ArticleResponse
-import com.uco.stlapp.models.Loan
 import com.uco.stlapp.models.PatchArticleQuantity
 import com.uco.stlapp.services.ArticleService
 import com.uco.stlapp.viewModels.ArticleListViewModel
@@ -26,9 +32,6 @@ import com.uco.stlapp.viewModels.LoanListViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import retrofit2.Response
-import java.text.SimpleDateFormat
-import java.util.Date
 
 class LoanFragment : Fragment() {
 
@@ -46,6 +49,10 @@ class LoanFragment : Fragment() {
     private var nameIdLoan: String?=null
     private lateinit var viewModelLoan: LoanListViewModel
     private lateinit var viewModelArticle: ArticleListViewModel
+
+    private val channelID ="notification_channel"
+    private val channelName ="com.uco.stlapp.utils.messaging"
+    private val notificID = 2
 
     val db = Firebase.firestore
 
@@ -100,9 +107,14 @@ class LoanFragment : Fragment() {
 
         }
         binding.btReturnLoanItem.setOnClickListener{
-            returnLoan()
+            if(nameIsReturned == false) {
+                returnLoan()
+                notificationLoan(nameArticle.toString())
+            }else{
+                Toast.makeText(requireContext(), "El articulo ya ha sido devuelto", Toast.LENGTH_SHORT).show()
+            }
         }
-
+        createNotificationChannel()
         return binding.root
     }
 
@@ -163,5 +175,51 @@ class LoanFragment : Fragment() {
                 }
         }
 
+    }
+
+    private fun notificationLoan(articleName: String){
+        val notificacion= context?.let { it ->
+            NotificationCompat.Builder(it,channelID).also{
+                it.setContentTitle("Devolución de prestamo exitoso")
+                it.setContentText("Se devolvio el articulo: ${articleName}.")
+                it.setSmallIcon(R.drawable.loan_logo)
+                it.priority = NotificationCompat.PRIORITY_HIGH
+            }.build()
+        }
+        if (notificacion != null) {
+            if (this.context?.let {
+                    ActivityCompat.checkSelfPermission(
+                        it,
+                        Manifest.permission.POST_NOTIFICATIONS
+                    )
+                } != PackageManager.PERMISSION_GRANTED
+            ){
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                return
+            }
+            context?.let { it1 ->
+                NotificationManagerCompat.from(
+                    it1
+                )
+            }?.notify(notificID, notificacion)
+        }
+    }
+
+    fun createNotificationChannel(){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            val importance = NotificationManager.IMPORTANCE_HIGH
+            val channel = NotificationChannel(channelID,channelName, importance).apply {
+                lightColor = Color.BLUE
+                enableLights(true)
+            }
+            val notificationManager = context?.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
+        }
     }
 }
